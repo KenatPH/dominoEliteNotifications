@@ -15,7 +15,7 @@ export const prepareEmailAndSend = async (userId: string, tipo: string, contexto
             html = `
                     <div style="text-align: center;">
                     <h1 style="color: #446d88;">¡Nuevo Torneo!</h1>
-                    <p style="color: #333;">Nos complace informarle que a sido invitado nuestro próximo Torneo <strong>${contexto?.torneoNombre}</strong>.</p>
+                    <p style="color: #333;">Nos complace informarle que a sido invitado nuestro próximo Torneo <strong>${(contexto?.torneoNombre) ? contexto?.torneoNombre:'' }</strong>.</p>
                     
 
                     <h2 style="color: #446d88;">Confirma tu asistencia</h2>
@@ -29,7 +29,7 @@ export const prepareEmailAndSend = async (userId: string, tipo: string, contexto
             html = `
                     <div style="text-align: center;">
                     <h1 style="color: #446d88;">¡Nuevo Torneo!</h1>
-                    <p style="color: #333;">Nos complace informarle que a sido seleccionado como arbitro en nuestro próximo Torneo <strong>${contexto?.torneoNombre}</strong>.</p>
+                    <p style="color: #333;">Nos complace informarle que a sido seleccionado como arbitro en nuestro próximo Torneo <strong>${(contexto?.torneoNombre) ? contexto?.torneoNombre : '' }</strong>.</p>
                     
 
                     <h2 style="color: #446d88;">Confirma tu asistencia</h2>
@@ -42,7 +42,7 @@ export const prepareEmailAndSend = async (userId: string, tipo: string, contexto
             subject = "Asignacion de mesa!"
             html = `
                     <div style="text-align: center;">
-                    <h1 style="color: #446d88;">Nueva Mesa!</h1>
+                    <h1 style="color: #446d88;">¡Nueva Mesa!</h1>
                     <p style="color: #333;">Usted a Sido asignado a la mesa ${contexto?.mesa}.</p>
                     
 
@@ -69,7 +69,7 @@ export const prepareEmailAndSend = async (userId: string, tipo: string, contexto
             subject = "!Resultado de partida!"
             html = `
                     <div style="text-align: center;">
-                    <h1 style="color: #446d88;">Nuevo Mesa!</h1>
+                    <h1 style="color: #446d88;">¡Partida Perdida!</h1>
                     <p style="color: #333;">No te desanimes, has jugado bien. Recuerda, cada derrota es una oportunidad para aprender y mejorar.</p>
                     
 

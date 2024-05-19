@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import SubscripcionesPush from "../models/subscripcionesPush.model";
 import WP from "../webPush";
+import ColaNotificaciones from "../models/colaNotificaciones.model";
 
 
 export const suscribe = async (req: Request, res: Response): Promise<Response> => {
@@ -51,6 +52,13 @@ export const suscribe = async (req: Request, res: Response): Promise<Response> =
 
 export const enviarNotificacion = async (req: Request, res: Response): Promise<Response> => {
 
+    const { userId, tipo, email } = req.body;
+
+    await ColaNotificaciones.create({
+        userId:userId,
+        tipo:tipo,
+        contexto: JSON.stringify({ email: email, mesa: 4, torneoNombre:'' })
+    })
 
 
     return res.status(201).json(
@@ -91,7 +99,7 @@ export const prepareWebPushAndSend = async(userId:string, tipo:string, contexto:
         // arma el mensaje segun el tipo
         switch (tipo) {
             case 'invitacionTorneo':
-                payload.notification.body = "Usted a Sido invitado al torneo \"" + contexto?.torneoNombre+"\""
+                payload.notification.body = "Usted a Sido invitado a un torneo "
             break;
 
             case 'esArbitro':
@@ -99,7 +107,7 @@ export const prepareWebPushAndSend = async(userId:string, tipo:string, contexto:
                 break;
 
             case 'mesaEnTorneo':
-                payload.notification.body = "Usted a Sido asignado a la mesea " + contexto?.mesa
+                payload.notification.body = "Usted a Sido asignado a la mesa " + contexto?.mesa
             break;
 
             case 'ganadorPartida':
