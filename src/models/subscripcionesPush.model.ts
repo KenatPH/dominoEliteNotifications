@@ -3,7 +3,7 @@ import { DataType } from 'sequelize-typescript';
 
 @Table({
     timestamps: false,
-    tableName: "SubscripcionesPush",
+    tableName: "subscripciones_push",
     modelName: "subPush"
 })
 class SubscripcionesPush extends Model {
